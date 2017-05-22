@@ -35,21 +35,3 @@
 ### Fixed
 - Anti-aliasing moche en plein écran
 
-***
-## CONTROLS
-
-### QWERTY Keyboards
-| Action      | Key       | Secondary Key |
-| ----------- | --------- | ------------- |
-| Go left     | A         | Left arrow    |
-| Go right    | D         | Right arrow   |
-| Pause       | Space bar |               |
-| Shoot laser | W         | Up arrow      |
-
-### AZERTY Keyboards
-| Action      | Key       | Secondary Key |
-| ----------- | --------- | ------------- |
-| Go left     | Q         | Left arrow    |
-| Go right    | D         | Right arrow   |
-| Pause       | Space bar |               |
-| Shoot laser | Z         | Up arrow      |
