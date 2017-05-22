@@ -7,8 +7,8 @@ Il y a de fortes chances que je ne le continue pas après que mon année s'est t
 
 # Change log
 
-## v0.3.0 - 2017-05-22
-### Added
+## [0.3.0](https://github.com/Jyel/UniteAntiParasite/tree/master/EXE/UAP%20v0.3.0) - 2017-05-22
+** Added : **
 - Nouveaux graphismes !
 - Contrôles ZQSD (WASD pour claviers qwerty)
 - Tir laser (touche Z ou Haut)
@@ -16,17 +16,17 @@ Il y a de fortes chances que je ne le continue pas après que mon année s'est t
 - Nouveau logo
 - Son de tir laser
 - Version .exe (sans Ruby et Gosu)
-### Changed
+** Changed : **
 - Ajustement des crédits
-### Removed
+** Removed : **
 - Plus de fenêtre de commande en arrière
-### Fixed
+** Fixed : **
 - Menu cliquable alors qu'il n'était pas affiché
 - Correction de bugs minimes
 
 
-## v0.2 (2017-03-17)
-### Added
+## 0.2.0 (2017-03-17)
+** Added : **
 - Musique originale ! (début et loop)
 - Volume de la musique baisse dans les menus
 - Police de caractère (Perfect DOS VGA)
@@ -34,10 +34,10 @@ Il y a de fortes chances que je ne le continue pas après que mon année s'est t
 - Bouton "EXIT" pour quitter
 - Titre/logo ! (design provisoire)
 - Plein écran (alt + entrer)
-### Changed
+** Changed : **
 - Organisation des médias en sous-dossiers
-### Removed
+** Removed : **
 - "Échap" pour quitter
 - Fond dans l'espace lors de l'écran de pause
-### Fixed
+** Fixed : **
 - Anti-aliasing moche en plein écran
