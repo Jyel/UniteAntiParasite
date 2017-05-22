@@ -8,8 +8,10 @@
 | Go left     | Left arrow  |               |
 | Go right    | Right arrow |               |
 | Pause       | Space bar   |               |
-| ----------- | ----------- | ------------- |
-| Unreleased                                |
+
+
+#### [Unreleased]
+| Action      | Key         | Secondary Key |
 | ----------- | ----------- | ------------- |
 | Shoot laser | W           | Up arrow      |
 | Go left     |             | A             |
@@ -21,8 +23,9 @@
 | Go left     | Left arrow  |               |
 | Go right    | Right arrow |               |
 | Pause       | Space bar   |               |
-| ----------- | ----------- | ------------- |
-| Unreleased                                |
+
+#### [Unreleased]
+| Action      | Key         | Secondary Key |
 | ----------- | ----------- | ------------- |
 | Shoot laser | Z           | Up arrow      |
 | Go left     |             | Q             |
