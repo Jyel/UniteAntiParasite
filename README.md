@@ -41,3 +41,5 @@ Il y a de fortes chances que je ne le continue pas après que mon année s'est t
 - Fond dans l'espace lors de l'écran de pause
 ### Fixed :
 - Anti-aliasing moche en plein écran
+
+# CONTROLS
