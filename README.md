@@ -13,7 +13,7 @@ Il y a de fortes chances que je ne le continue pas après que mon année s'est t
 ***
 # Change Log
 
-## [0.3.0](https://github.com/Jyel/UniteAntiParasite/tree/master/EXE/UAP%20v0.3.0) - 2017-05-22
+## [0.3.0](https://github.com/Jyel/UniteAntiParasite/releases/tag/v0.3.0-alpha) - 2017-05-22
 ### Added :
 - Nouveaux graphismes !
 - Contrôles ZQSD (WASD pour claviers qwerty)
