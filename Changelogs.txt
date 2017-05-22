@@ -1,0 +1,28 @@
+UAP : Unité Anti-Parasite
+
+###### v0.3 ######
+
++ Nouveaux graphismes !
++ Contrôles ZQSD (WASD pour claviers qwerty)
++ Tir laser (touche Z ou Haut)
++ Ennemis virus aléatoires
++ Nouveau logo
++ Son de tir laser
++ Version .exe (sans Ruby et Gosu)
+- Plus de fenêtre de commande en arrière
+• Ajustement des crédits
+• Correction de bugs
+
+##### v0.2 #####
+
++ Musique originale ! (début et loop)
++ Volume de la musique baisse dans les menus
++ Police de caractère (Perfect DOS VGA)
++ Fond noir teinté pour l'écran de pause
++ Bouton "EXIT" pour quitter
++ Titre/logo ! (design provisoire)
++ Plein écran (alt + entrer)
+- Enlevé "Échap" pour quitter
+- Plus de fond dans l'espace lors de l'écran de pause
+- Plus d'anti-aliasing moche en plein écran
+• Sous-catégories dans le dossier "media"

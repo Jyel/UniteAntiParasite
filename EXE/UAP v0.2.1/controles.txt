@@ -1,0 +1,10 @@
+#### CONTROLES ####
+
+Gauche 		=> Q ou Flèche de gauche
+Droite 		=> D ou Flèche de droite
+Pause 		=> Espace
+Plein Écran	=> Alt + Entrer
+
+## PAS ENCORE IMPLÉMENTÉS ##
+
+Tirer		=> Z ou Flèche du haut
