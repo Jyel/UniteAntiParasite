@@ -3,19 +3,27 @@
 ## CONTROLS
 
 ### QWERTY Keyboards
-- Go left			=> Left arrow
-- Go right			=> Right arrow
-- Pause				=> Space bar
-#### [Unreleased]
-- Go left			=> A key
-- Go right			=> D key
-- Shoot laser		=> W key or Up arrow
+| Action      | Key       | Secondary Key |
+| ----------- | --------- | ------------- |
+| Go left     | Left arrow         |     |
+| Go right    | Right arrow         |    |
+| Pause       | Space bar |               |
+| ----------- | --------- | ------------- |
+| Unreleased |
+| ----------- | --------- | ------------- |
+| Shoot laser | W         | Up arrow      |
+| Go left     |  |   A  |
+| Go right    |   |  D  |
 
 ### AZERTY Keyboards
-- Go left			=> Left arrow
-- Go right			=> Right arrow
-- Pause				=> Space bar
-#### [Unreleased]
-- Go left			=> Q key
-- Go right			=> D key
-- Shoot laser		=> Z key or Up arrow
+| Action      | Key       | Secondary Key |
+| ----------- | --------- | ------------- |
+| Go left     | Left arrow         |     |
+| Go right    | Right arrow         |    |
+| Pause       | Space bar |               |
+| ----------- | --------- | ------------- |
+| Unreleased |
+| ----------- | --------- | ------------- |
+| Shoot laser | Z         | Up arrow      |
+| Go left     |          | Q    |
+| Go right    |         |  D   |
