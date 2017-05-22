@@ -9,7 +9,7 @@
 | Go right    | D         | Right arrow   |
 | Pause       | Space bar |               |
 
-#### Unreleased
+#### [Unreleased]
 | Action      | Key       | Secondary Key |
 | ----------- | --------- | ------------- |
 | Shoot laser | W         | Up arrow      |
@@ -21,7 +21,7 @@
 | Go right    | D         | Right arrow   |
 | Pause       | Space bar |               |
 
-#### Unreleased
+#### [Unreleased]
 | Action      | Key       | Secondary Key |
 | ----------- | --------- | ------------- |
 | Shoot laser | Z         | Up arrow      |
