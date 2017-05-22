@@ -1,9 +1,9 @@
-# UniteAntiParasite
+# UAP : Unité Anti-Parasite
 This is a super simplistic in development game. It is a school project.
 There is a chance I don't end it when my year has ended.
 
 
-###### v0.3 ######
+# v0.3
 
 + Nouveaux graphismes !
 + Contrôles ZQSD (WASD pour claviers qwerty)
