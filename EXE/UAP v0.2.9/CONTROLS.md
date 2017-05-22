@@ -10,6 +10,8 @@
 | Pause       | Space bar |               |
 
 #### Unreleased
+| Action      | Key       | Secondary Key |
+| ----------- | --------- | ------------- |
 | Shoot laser | W         | Up arrow      |
 
 ### AZERTY Keyboards
@@ -20,4 +22,6 @@
 | Pause       | Space bar |               |
 
 #### Unreleased
+| Action      | Key       | Secondary Key |
+| ----------- | --------- | ------------- |
 | Shoot laser | Z         | Up arrow      |
