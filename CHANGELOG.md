@@ -1,6 +1,6 @@
 # UAP : Unité Anti-Parasite
 
-## v0.3.0 - 2017-05-22
+## 0.3.0 - 2017-05-22
 ### Added
 - Nouveaux graphismes !
 - Contrôles ZQSD (WASD pour claviers qwerty)
@@ -18,7 +18,7 @@
 - Correction de bugs minimes
 
 
-## v0.2 (2017-03-17)
+## 0.2.0 - (2017-03-17)
 ### Added
 - Musique originale ! (début et loop)
 - Volume de la musique baisse dans les menus
@@ -35,16 +35,21 @@
 ### Fixed
 - Anti-aliasing moche en plein écran
 
+***
 ## CONTROLS
 
 ### QWERTY Keyboards
-- Go left			=> A key or Left arrow
-- Go right			=> D key or Right arrow
-- Pause				=> Space bar
-- Shoot laser		=> W key or Up arrow
+| Action      | Key       | Secondary Key |
+| ----------- | --------- | ------------- |
+| Go left     | A         | Left arrow    |
+| Go right    | D         | Right arrow   |
+| Pause       | Space bar |               |
+| Shoot laser | W         | Up arrow      |
 
 ### AZERTY Keyboards
-- Go left			=> Q key or Left arrow
-- Go right			=> D key or Right arrow
-- Pause				=> Space bar
-- Shoot laser		=> Z key or Up arrow
+| Action      | Key       | Secondary Key |
+| ----------- | --------- | ------------- |
+| Go left     | Q         | Left arrow    |
+| Go right    | D         | Right arrow   |
+| Pause       | Space bar |               |
+| Shoot laser | Z         | Up arrow      |
