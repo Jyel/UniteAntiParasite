@@ -15,7 +15,7 @@ Il y a de fortes chances que je ne le continue pas après que mon année s'est t
 - Ennemis virus aléatoires
 - Nouveau logo
 - Son de tir laser
-- Version .exe (sans Ruby et Gosu)
+- Version .exe (sans Ruby et Gosu)  
 **Changed :**
 - Ajustement des crédits
 **Removed :**
