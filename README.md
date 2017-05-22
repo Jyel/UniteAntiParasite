@@ -13,5 +13,5 @@ There is a chance I don't end it when my year has ended.
 + Son de tir laser
 + Version .exe (sans Ruby et Gosu)
 - Plus de fenêtre de commande en arrière
--- Ajustement des crédits
--- Correction de bugs
+- Ajustement des crédits
+- Correction de bugs
