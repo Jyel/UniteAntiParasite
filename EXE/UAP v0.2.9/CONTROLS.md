@@ -1,4 +1,4 @@
-# UAP : Unité Anti-Parasite
+# UAP : UnitÃ© Anti-Parasite
 
 ## CONTROLS
 
@@ -8,7 +8,8 @@
 | Go left     | A         | Left arrow    |
 | Go right    | D         | Right arrow   |
 | Pause       | Space bar |               |
-| Unreleased |
+
+#### Unreleased
 | Shoot laser | W         | Up arrow      |
 
 ### AZERTY Keyboards
@@ -17,5 +18,6 @@
 | Go left     | Q         | Left arrow    |
 | Go right    | D         | Right arrow   |
 | Pause       | Space bar |               |
-| Unreleased |
+
+#### Unreleased
 | Shoot laser | Z         | Up arrow      |
