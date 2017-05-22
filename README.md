@@ -5,6 +5,7 @@ There is a chance I don't end it when my year has ended.
 Ceci est un jeu rétro en développement très simpliste. C'est un projet pour mon Bac.
 Il y a de fortes chances que je ne le continue pas après que mon année s'est terminée.
 
+***
 # Change Log
 
 ## [0.3.0](https://github.com/Jyel/UniteAntiParasite/tree/master/EXE/UAP%20v0.3.0) - 2017-05-22
