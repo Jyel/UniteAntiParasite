@@ -17,9 +17,9 @@ Il y a de fortes chances que je ne le continue pas après que mon année s'est t
 - Son de tir laser
 - Version .exe (sans Ruby et Gosu)  
 **Changed :**
-- Ajustement des crédits
+- Ajustement des crédits  
 **Removed :**
-- Plus de fenêtre de commande en arrière
+- Plus de fenêtre de commande en arrière  
 **Fixed :**
 - Menu cliquable alors qu'il n'était pas affiché
 - Correction de bugs minimes
