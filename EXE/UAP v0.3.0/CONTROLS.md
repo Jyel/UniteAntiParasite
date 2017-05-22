@@ -1,15 +1,19 @@
-# UAP : Unité Anti-Parasite
+# UAP : UnitÃ© Anti-Parasite
 
 ## CONTROLS
 
 ### QWERTY Keyboards
-Go left			=> A key or Left arrow
-Go right		=> D key or Right arrow
-Shoot laser	=> W key or Up arrow
-Pause			=> Space bar
+| Action      | Key       | Secondary Key |
+| ----------- | --------- | ------------- |
+| Go left     | A         | Left arrow    |
+| Go right    | D         | Right arrow   |
+| Pause       | Space bar |               |
+| Shoot laser | W         | Up arrow      |
 
 ### AZERTY Keyboards
-Go left			=> Q key or Left arrow
-Go right		=> D key or Right arrow
-Shoot laser	=> Z key or Up arrow
-Pause			=> Space bar
+| Action      | Key       | Secondary Key |
+| ----------- | --------- | ------------- |
+| Go left     | Q         | Left arrow    |
+| Go right    | D         | Right arrow   |
+| Pause       | Space bar |               |
+| Shoot laser | Z         | Up arrow      |
