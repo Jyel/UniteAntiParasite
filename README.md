@@ -19,8 +19,8 @@ Il y a de fortes chances que je ne le continue pas après que mon année s'est t
 ## Table Content
 - [Change Log](#change-log)
   + [[Unreleased]](#unreleased)
-  + [0.3.0](#v030---2017-05-22)
-  + [0.2.0](#v020---2017-03-17)
+  + [v0.3.0](#v030---2017-05-22)
+  + [v0.2.0](#v020---2017-03-17)
 - [Controls](#controls)
 
 ***
