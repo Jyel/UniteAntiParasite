@@ -69,13 +69,13 @@ Il y a de fortes chances que je ne le continue pas après que mon année s'est t
 | ----------- | --------- | ------------- |
 | Go left     | A         | Left arrow    |
 | Go right    | D         | Right arrow   |
-| Pause       | Space bar |               |
 | Shoot laser | W         | Up arrow      |
+| Pause       | Space bar |               |
 
 ### AZERTY Keyboards
 | Action      | Key       | Secondary Key |
 | ----------- | --------- | ------------- |
 | Go left     | Q         | Left arrow    |
 | Go right    | D         | Right arrow   |
-| Pause       | Space bar |               |
 | Shoot laser | Z         | Up arrow      |
+| Pause       | Space bar |               |
