@@ -25,8 +25,6 @@ Il y a de fortes chances que je ne le continue pas après que mon année s'est t
 
 ***
 # Change Log
-___
----
 ## [[Unreleased]](#unreleased)
 ### Changed : 
 - Nouvelle icône/logo
