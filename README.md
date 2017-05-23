@@ -16,7 +16,7 @@ There is a chance I don't end it when my year has ended.
 Ceci est un jeu rétro en développement **très** simpliste. C'est un projet pour mon Bac.
 Il y a de fortes chances que je ne le continue pas après que mon année s'est terminée.
 
-## Table Content
+## Table of contents
 - <strong>[Change Log](#change-log)</strong>
   + [[Unreleased]](#unreleased)
   + [v0.3.0](#v030---2017-05-22)
