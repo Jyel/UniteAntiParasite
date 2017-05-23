@@ -16,20 +16,21 @@ There is a chance I don't end it when my year has ended.
 Ceci est un jeu rétro en développement **très** simpliste. C'est un projet pour mon Bac.
 Il y a de fortes chances que je ne le continue pas après que mon année s'est terminée.
 
+## Table Content
 - [Change Log](#change-log)
   + [[Unreleased]](#unreleased)
-  + [0.3.0](#030---2017-05-22)
-  + [0.2.0](#020---2017-03-17)
+  + [0.3.0](#v030---2017-05-22)
+  + [0.2.0](#v020---2017-03-17)
 - [Controls](#controls)
 
 ***
 # Change Log
 
-## [Unreleased]
+## [[Unreleased]](#unreleased)
 ### Changed : 
 - Nouvelle icône/logo
 
-## [0.3.0](https://github.com/Jyel/UniteAntiParasite/releases/tag/v0.3.0-alpha) - 2017-05-22
+## [v0.3.0](https://github.com/Jyel/UniteAntiParasite/releases/tag/v0.3.0-alpha) - 2017-05-22
 [Download 0.3.0-alpha Release](https://github.com/Jyel/UniteAntiParasite/releases/download/v0.3.0-alpha/UAP.v0.3.0-alpha.RELEASE.zip)
 ### Added :
 - Nouveaux graphismes !
@@ -48,7 +49,7 @@ Il y a de fortes chances que je ne le continue pas après que mon année s'est t
 - Correction de bugs minimes
 
 
-## [0.2.0](https://github.com/Jyel/UniteAntiParasite/releases/tag/v0.2.0-alpha) - 2017-03-17
+## [v0.2.0](https://github.com/Jyel/UniteAntiParasite/releases/tag/v0.2.0-alpha) - 2017-03-17
 [Download 0.2.0-alpha Release](https://github.com/Jyel/UniteAntiParasite/releases/download/v0.2.0-alpha/UAP.v0.2.0-alpha.RELEASE.zip)
 ### Added :
 - Musique originale ! (début et loop)
