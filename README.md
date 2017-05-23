@@ -17,11 +17,11 @@ Ceci est un jeu rétro en développement **très** simpliste. C'est un projet po
 Il y a de fortes chances que je ne le continue pas après que mon année s'est terminée.
 
 ## Table Content
-- [Change Log](#change-log)
+- <strong>[Change Log](#change-log)</strong>
   + [[Unreleased]](#unreleased)
   + [v0.3.0](#v030---2017-05-22)
   + [v0.2.0](#v020---2017-03-17)
-- [Controls](#controls)
+- <strong>[Controls](#controls)</strong>
 
 ***
 # Change Log
