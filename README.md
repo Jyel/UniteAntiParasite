@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/Jyel/UniteAntiParasite">
-    <img src="icon/UAP.png" width=80 height=80>
+    <img src="icon/logo.png" width=80 height=80>
   </a>
 
   <h1 align="center">UAP : Unité Anti-Parasite</h1>
