@@ -1,4 +1,15 @@
-# UAP : Unité Anti-Parasite
+<p align="center">
+  <a href="https://github.com/Jyel/UniteAntiParasite">
+    <img src="icon/UAP.png" width=80 height=80>
+  </a>
+
+  <h1 align="center">UAP : Unité Anti-Parasite</h1>
+
+  <p align="center">
+    <a href="https://github.com/Jyel/UniteAntiParasite/releases/download/v0.3.0-alpha/UAP.v0.3.0-alpha.RELEASE.zip"><strong>Download v0.3.0-alpha Release &raquo;</strong></a>
+  </p>
+</p>
+
 This is a **super** simplistic retro in development game. It is a school project.
 There is a chance I don't end it when my year has ended.
 
