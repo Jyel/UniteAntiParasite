@@ -30,6 +30,8 @@ Il y a de fortes chances que je ne le continue pas après que mon année s'est t
 ### Changed : 
 - Nouvelle icône/logo
 
+<br>
+
 ## [v0.3.0](https://github.com/Jyel/UniteAntiParasite/releases/tag/v0.3.0-alpha) - 2017-05-22
 [Download 0.3.0-alpha Release](https://github.com/Jyel/UniteAntiParasite/releases/download/v0.3.0-alpha/UAP.v0.3.0-alpha.RELEASE.zip)
 ### Added :
@@ -48,6 +50,7 @@ Il y a de fortes chances que je ne le continue pas après que mon année s'est t
 - Menu cliquable alors qu'il n'était pas affiché
 - Correction de bugs minimes
 
+<br>
 
 ## [v0.2.0](https://github.com/Jyel/UniteAntiParasite/releases/tag/v0.2.0-alpha) - 2017-03-17
 [Download 0.2.0-alpha Release](https://github.com/Jyel/UniteAntiParasite/releases/download/v0.2.0-alpha/UAP.v0.2.0-alpha.RELEASE.zip)
