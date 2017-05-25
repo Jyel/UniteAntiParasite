@@ -106,7 +106,17 @@ class Enemy
 	end
 	
 	def draw
-		@enemy.draw(@x, @y, 0)
+		@enemy.draw(@x, @y, -1)
+	end
+end
+
+class UI
+	def initialize
+		@font = Gosu::Font.new(20, name: "media/font/Perfect DOS VGA 437 Win.ttf")
+	end
+	
+	def draw(score:)
+		@font.draw("Score: #{score}", 10, 10, 1, 1.0, 1.0, 0xff_ffffff)
 	end
 end
 
@@ -143,6 +153,7 @@ class GameWindow < Gosu::Window
 		@player = Gosu::Image.new("media/ui/ship.png", retro: true)
 		@player_x, @player_y = 210 - (@player.width / 2), 620 - @player.height
 		@laser_x, @laser_y = @player_x, @player_y
+		@toggleshoot = 0
 		@enemies = [] #Initialise la liste d'ennemis
 			#Initialisation du menu play
 		@title = Gosu::Image.new("media/back/title.png", retro: true)
@@ -151,6 +162,11 @@ class GameWindow < Gosu::Window
 		@menu.add_item(Gosu::Image.new("media/button/play.png", retro: true), 210 - 150/2, 320 - 75/2, 2, lambda { if @show_credits == 0 ; @toggleon = 1 ; @playclicked = 1 ; end}, Gosu::Image.new("media/button/play_hover.png", retro: true))
 		@menu.add_item(Gosu::Image.new("media/button/credits.png", retro: true), 210 - 150/2, 420 - 75/2, 2, lambda { @show_credits = 1 if @toggleon == 0}, Gosu::Image.new("media/button/credits_hover.png", retro: true))
 		@menu.add_item(Gosu::Image.new("media/button/exit.png", retro: true), 210 - 150/2, 520 - 75/2, 2, lambda { close if @toggleon == 0 && @show_credits == 0 }, Gosu::Image.new("media/button/exit_hover.png", retro: true))
+			#Initialisation du UI
+		@ui = UI.new
+		@score = 0
+		@scoremin = 1
+		@scoreplus = 10 + @scoremin
 			#Polices de caractères
 		@basicfont = Gosu::Font.new(20, name: "media/font/Perfect DOS VGA 437 Win.ttf")
 		@bigfont = Gosu::Font.new(50, name: "media/font/Perfect DOS VGA 437 Win.ttf")
@@ -187,6 +203,7 @@ class GameWindow < Gosu::Window
 			@tir = 1 if button_down?(Gosu::KB_W) or button_down?(Gosu::KbUp)
 			@tir = 0 if @laser_y <= 0 - @laser.height
 			@shootplay = 0 if @laser_y <= 0 - @laser.height
+			@toggleshoot = 0 if @tir == 0
 			
 			if @tir == 1 and @shootplay == 0
 				if rand < 0.33
@@ -203,14 +220,24 @@ class GameWindow < Gosu::Window
 				@enemies.reject! {|enemy| collide?(enemy) ? collision : false}
 			end
 			
+			if @tir == 1 and @toggleshoot == 0 and @score >= @scoremin
+				@toggleshoot = 1
+				@score -= @scoremin
+			end
+			
 			#Gère l'apparition des ennemis.
 			unless @enemies.size >= 15
 				r = rand
-				if r < 0.02
+				if r < 0.2
 					@enemies.push(Enemy.new())
 				end
 			end
 			@enemies.each(&:update)
+			@enemies.each{ |enemy|
+				if enemy.y > 640 and @score >= @scoremin
+					@score -= 100 * @scoremin
+				end
+			}
 			@enemies.reject! {|enemy| enemy.y > 640}
 			
 		else
@@ -231,6 +258,7 @@ class GameWindow < Gosu::Window
 	end
 	
 	def collision
+		@score += @scoreplus
 		@tir = 0
 		@shootplay = 0
 		@explosion.play(1.0)
@@ -244,6 +272,8 @@ class GameWindow < Gosu::Window
 			@cache.draw(0, 0, 2)
 			@menu.draw if @show_credits == 0
 		end
+			#Affichage du UI
+		@ui.draw(score: @score)
 			#Affichage des crédits
 		if @show_credits == 1
 			@bigfont.draw_rel("<u>Crédits</u>",
