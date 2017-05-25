@@ -22,6 +22,8 @@ Il y a de fortes chances que je ne le continue pas après que mon année s'est t
   + [v0.3.0](#v030---2017-05-22)
   + [v0.2.0](#v020---2017-03-17)
 - <strong>[Controls](#controls)</strong>
+  + [QWERTY](#qwerty-keyboards)
+  + [AZERTY](#azerty-keyboards)
 
 ***
 # Change Log
@@ -31,6 +33,8 @@ Il y a de fortes chances que je ne le continue pas après que mon année s'est t
 - Système de points
 - Son d'explosion des ennemis
 - Possibilité de couper le son (Touche P)
+- Niveau suivant le score
+- Vitesse des ennemis qui augmente suivant le niveau
 ### Changed : 
 - Nouvelle icône/logo
 
@@ -84,6 +88,7 @@ Il y a de fortes chances que je ne le continue pas après que mon année s'est t
 | Go right    | D         | Right arrow   |
 | Shoot laser | W         | Up arrow      |
 | Pause       | Space bar |               |
+| Mute       | P		 |               |
 
 ### AZERTY Keyboards
 | Action      | Key       | Secondary Key |
@@ -92,3 +97,4 @@ Il y a de fortes chances que je ne le continue pas après que mon année s'est t
 | Go right    | D         | Right arrow   |
 | Shoot laser | Z         | Up arrow      |
 | Pause       | Space bar |               |
+| Mute       | P		 |               |
