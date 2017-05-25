@@ -18,7 +18,7 @@ Il y a de fortes chances que je ne le continue pas après que mon année s'est t
 
 ## Table of contents
 - <strong>[Change Log](#change-log)</strong>
-  + [[Unreleased]](#unreleased)
+  + [v0.4.0](#v040---2017-05-25)
   + [v0.3.0](#v030---2017-05-22)
   + [v0.2.0](#v020---2017-03-17)
 - <strong>[Controls](#controls)</strong>
@@ -27,7 +27,7 @@ Il y a de fortes chances que je ne le continue pas après que mon année s'est t
 
 ***
 # Change Log
-## [v0.4.0](https://github.com/Jyel/UniteAntiParasite/releases/tag/v0.4.0-alpha)
+## [v0.4.0](https://github.com/Jyel/UniteAntiParasite/releases/tag/v0.4.0-alpha) - 2017-05-25
 [Download 0.4.0-alpha Release &raquo;](https://github.com/Jyel/UniteAntiParasite/releases/download/v0.4.0-alpha/UAP.v0.4.0-alpha.RELEASE.zip)
 ### Added :
 - Collision entre le laser et les ennemis
