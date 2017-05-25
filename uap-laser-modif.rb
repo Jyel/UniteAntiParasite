@@ -101,30 +101,6 @@ class Enemy
 	end
 end
 
-class Laser
-attr_accessor :laser_x, :laser_y, :tir, :laser_height
- 
-	def initialize
-		@img = Gosu::Image.new("media/ui/laser.png", retro: true)
-		@x, @y = GameWindow.new.player_x, GameWindow.new.player_y
-		@tir = 0 #Détermine quand le joueur tire
-	end
-	
-	def update
-		@x = @GameWindow.player_x + @GameWindow.player.width / 2 - @img.width / 2 if @tir == 0
-		@y = 620 - @img.height if @tir == 0
-		@y -= 40 if @tir == 1
-		
-		@tir = 1 if button_down?(Gosu::KB_W) or button_down?(Gosu::KbUp)
-		@tir = 0 if @y <= 0 - @img.height
-	end
-	
-	def draw
-		@img.draw(@x, @y, 0) if @tir == 1
-	end
-end
-
-
 class GameWindow < Gosu::Window
 	def initialize #Initialise les données et objets
 		super 420,640
@@ -190,9 +166,9 @@ class GameWindow < Gosu::Window
 			@player_x -= @vitesse if button_down?(Gosu::KB_A) or button_down?(Gosu::KbLeft) and @player_x >= 0
 			@player_x += @vitesse if button_down?(Gosu::KB_D) or button_down?(Gosu::KbRight) and @player_x < 420 - @player.width
 			@toggleon = 0 if button_down?(Gosu::KbSpace)
-			@shootplay = 0 if laser.y <= 0 - laser.img.height
+			@shootplay = 0 if Laser.new.laser_y <= 0 - Laser.new.laser_height
 			
-			if laser.tir == 1 and @shootplay == 0
+			if @tir == 1 and @shootplay == 0
 				if rand < 0.33
 					@shoot1.play
 				elsif rand < 0.66
@@ -310,7 +286,30 @@ class GameWindow < Gosu::Window
 	end
 end
 
-laser = Laser.new
+class Laser
+attr_accessor :laser_x, :laser_y, :tir, :laser_height
+ 
+	def initialize
+		@laser_img = Gosu::Image.new("media/ui/laser.png", retro: true)
+		@laser_height = @laser_img.height
+		@laser_x, @laser_y = @player_x, @player_y
+		@tir = 0 #Détermine quand le joueur tire
+	end
+	
+	def update
+		@laser_x = @player_x + @player.width / 2 - @img.width / 2 if @tir == 0
+		@laser_y = 620 - @laser_img.height if @tir == 0
+		@laser_y -= 40 if @tir == 1
+		
+		@tir = 1 if button_down?(Gosu::KB_W) or button_down?(Gosu::KbUp)
+		@tir = 0 if @laser_y <= 0 - @laser_img.height
+	end
+	
+	def draw
+		@img.draw(@laser_x, @laser_y, 0) if @tir == 1
+	end
+end
+
 window = GameWindow.new
 
 window.show
