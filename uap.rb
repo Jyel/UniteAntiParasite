@@ -101,7 +101,6 @@ class Enemy
 	end
 end
 
-window = GameWindow.new
 class Laser
 attr_accessor :laser_x, :laser_y, :tir, :laser_height
  
@@ -312,5 +311,6 @@ class GameWindow < Gosu::Window
 end
 
 laser = Laser.new
+window = GameWindow.new
 
 window.show
