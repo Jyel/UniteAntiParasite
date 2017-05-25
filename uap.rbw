@@ -101,27 +101,6 @@ class Enemy
 	end
 end
 
-class Laser
-	def initialize
-		@img = Gosu::Image.new("media/ui/laser.png", retro: true)
-		@x, @y = @GameWindow.player_x, @GameWindow.player_y
-		@tir = 0 #Détermine quand le joueur tire
-	end
-	
-	def update
-		@x = @GameWindow.player_x + @GameWindow.player.width / 2 - @img.width / 2 if @tir == 0
-		@y = 620 - @img.height if @tir == 0
-		@y -= 40 if @tir == 1
-		
-		@tir = 1 if button_down?(Gosu::KB_W) or button_down?(Gosu::KbUp)
-		@tir = 0 if @y <= 0 - @img.height
-	end
-	
-	def draw
-		@img.draw(@x, @y, 0) if @tir == 1
-	end
-end
-
 class GameWindow < Gosu::Window
 	def initialize #Initialise les données et objets
 		super 420,640
@@ -132,6 +111,7 @@ class GameWindow < Gosu::Window
 		@playclicked = 0 #Détermine si le bouton PLAY a été cliqué
 		@songplay = 0 #Détermine quand la musique joue
 		@vitesse = 8 #Détermine la vitesse horizontale du joueur
+		@tir = 0 #Détermine quand le joueur tire
 			#Initialisation de la musique
 		@loop = Gosu::Song.new("media/music/song_loop.ogg")
 		@loop.volume = 0.25
@@ -146,8 +126,10 @@ class GameWindow < Gosu::Window
 		@background  = Gosu::Image.new("media/back/background.png", retro: true)
 		@x1, @y1 = 0, 0
 			#Initialisation du joueur et de ses coordonnées
+		@laser = Gosu::Image.new("media/ui/laser.png", retro: true)
 		@player = Gosu::Image.new("media/ui/ship.png", retro: true)
 		@player_x, @player_y = 210 - (@player.width / 2), 620 - @player.height
+		@laser_x, @laser_y = @player_x, @player_y
 		@enemies = [] #Initialise la liste d'ennemis
 			#Initialisation du menu play
 		@title = Gosu::Image.new("media/back/title.png", retro: true)
@@ -180,16 +162,20 @@ class GameWindow < Gosu::Window
 		end
 		
 		@menu.update #Update le menu
-		
 			#Toggle sert à démarrer le jeu seulement quand la barre play est cliqué
 		if @toggleon ==  1 #Dans cette boucle, mettre toutes les fonctions prévues
 			@y1 += 3
 			@player_x -= @vitesse if button_down?(Gosu::KB_A) or button_down?(Gosu::KbLeft) and @player_x >= 0
 			@player_x += @vitesse if button_down?(Gosu::KB_D) or button_down?(Gosu::KbRight) and @player_x < 420 - @player.width
+			@laser_x = @player_x + @player.width / 2 - @laser.width / 2 if @tir == 0
+			@laser_y = 620 - @laser.height if @tir == 0
+			@laser_y -= 40 if @tir == 1
 			@toggleon = 0 if button_down?(Gosu::KbSpace)
-			@shootplay = 0 if @Laser.y <= 0 - @Laser.img.height
+			@tir = 1 if button_down?(Gosu::KB_W) or button_down?(Gosu::KbUp)
+			@tir = 0 if @laser_y <= 0 - @laser.height
+			@shootplay = 0 if @laser_y <= 0 - @laser.height
 			
-			if @Laser.tir == 1 and @shootplay == 0
+			if @tir == 1 and @shootplay == 0
 				if rand < 0.33
 					@shoot1.play
 				elsif rand < 0.66
@@ -286,6 +272,7 @@ class GameWindow < Gosu::Window
 		@background.draw(@x1, @local_y + @background.height, -1) if @local_y < (@background.height - self.height)
 			#Affichage du joueur
 		@player.draw(@player_x, @player_y, 1)
+		@laser.draw(@laser_x, @laser_y, 0) if @tir == 1
 		@enemies.each(&:draw)
 	end
 	  

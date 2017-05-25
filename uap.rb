@@ -101,10 +101,13 @@ class Enemy
 	end
 end
 
+window = GameWindow.new
 class Laser
+attr_accessor :laser_x, :laser_y, :tir, :laser_height
+ 
 	def initialize
 		@img = Gosu::Image.new("media/ui/laser.png", retro: true)
-		@x, @y = @GameWindow.player_x, @GameWindow.player_y
+		@x, @y = GameWindow.new.player_x, GameWindow.new.player_y
 		@tir = 0 #Détermine quand le joueur tire
 	end
 	
@@ -121,6 +124,7 @@ class Laser
 		@img.draw(@x, @y, 0) if @tir == 1
 	end
 end
+
 
 class GameWindow < Gosu::Window
 	def initialize #Initialise les données et objets
@@ -187,9 +191,9 @@ class GameWindow < Gosu::Window
 			@player_x -= @vitesse if button_down?(Gosu::KB_A) or button_down?(Gosu::KbLeft) and @player_x >= 0
 			@player_x += @vitesse if button_down?(Gosu::KB_D) or button_down?(Gosu::KbRight) and @player_x < 420 - @player.width
 			@toggleon = 0 if button_down?(Gosu::KbSpace)
-			@shootplay = 0 if @Laser.y <= 0 - @Laser.img.height
+			@shootplay = 0 if laser.y <= 0 - laser.img.height
 			
-			if @Laser.tir == 1 and @shootplay == 0
+			if laser.tir == 1 and @shootplay == 0
 				if rand < 0.33
 					@shoot1.play
 				elsif rand < 0.66
@@ -307,5 +311,6 @@ class GameWindow < Gosu::Window
 	end
 end
 
-window = GameWindow.new
+laser = Laser.new
+
 window.show
