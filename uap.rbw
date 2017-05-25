@@ -85,7 +85,8 @@ class MenuItem #gère les choix du menu
 end
 
 class Enemy
-  attr_reader :y
+  attr_reader :y, :y
+  
 	def initialize()
 		@enemy = Gosu::Image.new("media/ui/virus.png", retro: true)
 		@x = rand * (420 - @enemy.width)
@@ -96,12 +97,23 @@ class Enemy
 		@y += 3
 	end
 	
+	def x_center_of_mass
+		@x + @enemy.width / 2
+	end
+	
+	def y_center_of_mass
+		@y
+	end
+	
 	def draw
-		@enemy.draw(@x, @y, -1)
+		@enemy.draw(@x, @y, 0)
 	end
 end
 
 class GameWindow < Gosu::Window
+	
+	DistanceofCollision = 35
+	
 	def initialize #Initialise les données et objets
 		super 420,640
 			#Initialisation des données
@@ -122,6 +134,7 @@ class GameWindow < Gosu::Window
 		@shoot1 = Gosu::Sample.new("media/sound/shoot1.wav")
 		@shoot2 = Gosu::Sample.new("media/sound/shoot2.wav")
 		@shoot3 = Gosu::Sample.new("media/sound/shoot3.wav")
+		@explosion = Gosu::Sample.new("media/sound/explosion.wav")
 			#Initialisation du background et de ses coordonnées
 		@background  = Gosu::Image.new("media/back/background.png", retro: true)
 		@x1, @y1 = 0, 0
@@ -186,6 +199,10 @@ class GameWindow < Gosu::Window
 				@shootplay = 1
 			end
 			
+			if @tir == 1
+				@enemies.reject! {|enemy| collide?(enemy) ? collision : false}
+			end
+			
 			#Gère l'apparition des ennemis.
 			unless @enemies.size >= 15
 				r = rand
@@ -194,12 +211,32 @@ class GameWindow < Gosu::Window
 				end
 			end
 			@enemies.each(&:update)
-			@enemies.reject! {|item| item.y > 640}
+			@enemies.reject! {|enemy| enemy.y > 640}
 			
 		else
 		end
 	end
-
+	
+	def collide?(enemy)
+		distance = Gosu::distance(x_center_of_mass, y_center_of_mass, enemy.x_center_of_mass, enemy.y_center_of_mass)
+		distance < DistanceofCollision
+	end
+	
+	def x_center_of_mass
+		@laser_x + @laser.width / 2
+	end
+	
+	def y_center_of_mass
+		@laser_y + @laser.height / 4
+	end
+	
+	def collision
+		@tir = 0
+		@shootplay = 0
+		@explosion.play(1.0)
+		true
+	end
+	
 	def draw #Affiche (dessine) les objets
 			#Affichage du menu
 		if @toggleon == 0
