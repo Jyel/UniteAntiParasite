@@ -30,6 +30,7 @@ Il y a de fortes chances que je ne le continue pas après que mon année s'est t
 - Collision entre le laser et les ennemis
 - Système de points
 - Son d'explosion des ennemis
+- Possibilité de couper le son (Touche P)
 ### Changed : 
 - Nouvelle icône/logo
 

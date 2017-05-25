@@ -89,14 +89,41 @@ class UI
 		@font = Gosu::Font.new(20, name: "media/font/Perfect DOS VGA 437 Win.ttf")
 	end
 	
-	def draw(score:)
-		@font.draw("Score: #{score}", 10, 10, 1, 1.0, 1.0, 0xff_ffffff)
+	def draw(score, niveau)
+		@font.draw("Score : #{score}", 10, 10, 1, 1.0, 1.0, 0xff_ffffff)
+		@font.draw("Niveau : #{niveau}", 10, 25, 1, 1.0, 1.0, 0xff_ffffff)
 	end
 end
 
+class Enemy
+  attr_reader :y, :x
+  
+	def initialize()
+		@enemy = Gosu::Image.new("media/ui/virus.png", retro: true)
+		@x = rand * (420 - @enemy.width)
+		@y = -500
+	end
+	
+	def update(vitesse)
+		@y += vitesse
+	end
+	
+	def x_center_of_mass
+		@x + @enemy.width / 2
+	end
+	
+	def y_center_of_mass
+		@y
+	end
+	
+	def draw
+		@enemy.draw(@x, @y, -1)
+	end
+end
+
+
 class GameWindow < Gosu::Window
 	DistanceofCollision = 35
-	attr_accessor :vitesse_decor
 	
 	def initialize #Initialise les données et objets
 		super 420,640
@@ -107,7 +134,9 @@ class GameWindow < Gosu::Window
 		@playclicked = 0 #Détermine si le bouton PLAY a été cliqué
 		@songplay = 0 #Détermine quand la musique joue
 		@vitesse = 8 #Détermine la vitesse horizontale du joueur
-		@vitesse_decor = 3
+		@vitessedecor = 3
+		@niveau = 0
+		@e = Enemy.new
 		@tir = 0 #Détermine quand le joueur tire
 			#Initialisation de la musique
 		@son_img = Gosu::Image.new("media/ui/son_on.png", retro: true)
@@ -154,7 +183,6 @@ class GameWindow < Gosu::Window
 
 	def update #60 fois par seconde
 			#Ici je mets en place la musique de fond
-		# UI.update
 		if @son == 1
 			@son_img = Gosu::Image.new("media/ui/son_on.png", retro: true)
 		else
@@ -195,11 +223,12 @@ class GameWindow < Gosu::Window
 		
 		@menu.update #Update le menu
 		
-		@vitesse_decor = 3 * (window.score / 1000 + 1)
+		@niveau += 1 if @score >= (@niveau + 1) * 1000
+		@vitessedecor = 3 + @niveau
 		
 			#Toggle sert à démarrer le jeu seulement quand la barre play est cliqué
 		if @toggleon ==  1 #Dans cette boucle, mettre toutes les fonctions prévues
-			@y1 += @vitesse_decor
+			@y1 += @vitessedecor
 			@player_x -= @vitesse if button_down?(Gosu::KB_A) or button_down?(Gosu::KbLeft) and @player_x >= 0
 			@player_x += @vitesse if button_down?(Gosu::KB_D) or button_down?(Gosu::KbRight) and @player_x < 420 - @player.width
 			@laser_x = @player_x + @player.width / 2 - @laser.width / 2 if @tir == 0
@@ -213,11 +242,11 @@ class GameWindow < Gosu::Window
 			
 			if @tir == 1 and @shootplay == 0
 				if rand < 0.33
-					@shoot1.play
+					@shoot1.play(1.0 * @son)
 				elsif rand < 0.66
-					@shoot2.play
+					@shoot2.play(1.0 * @son)
 				else
-					@shoot3.play
+					@shoot3.play(1.0 * @son)
 				end
 				@shootplay = 1
 			end
@@ -238,7 +267,10 @@ class GameWindow < Gosu::Window
 					@enemies.push(Enemy.new())
 				end
 			end
-			@enemies.each(&:update)
+			
+			@enemies.each { |enemy|
+				enemy.update(@vitessedecor)
+			}
 			@enemies.each{ |enemy|
 				if enemy.y > 640 and @score >= @scoremin
 					@score -= 20 * @scoremin if @score - 20 * @scoremin >= 0
@@ -268,7 +300,7 @@ class GameWindow < Gosu::Window
 		@score += @scoreplus
 		@tir = 0
 		@shootplay = 0
-		@explosion.play(1.0)
+		@explosion.play(1.0 * @son)
 		true
 	end
 	
@@ -281,7 +313,7 @@ class GameWindow < Gosu::Window
 		end
 			#Affichage du UI
 		@son_img.draw(420 - @son_img.width - 10, 10, 1)
-		@ui.draw(score: @score)
+		@ui.draw(@score, @niveau)
 			#Affichage des crédits
 		if @show_credits == 1
 			@bigfont.draw_rel("<u>Crédits</u>",
@@ -369,33 +401,5 @@ class GameWindow < Gosu::Window
 	end
 end
 
-class Enemy
-  attr_reader :y, :y, :vitesse_decor
-  
-	def initialize()
-		@enemy = Gosu::Image.new("media/ui/virus.png", retro: true)
-		@x = rand * (420 - @enemy.width)
-		@y = -500
-	end
-	
-	def update
-		@y += window.vitesse_decor
-	end
-	
-	def x_center_of_mass
-		@x + @enemy.width / 2
-	end
-	
-	def y_center_of_mass
-		@y
-	end
-	
-	def draw
-		@enemy.draw(@x, @y, -1)
-	end
-end
-
-
 window = GameWindow.new
-e = Enemy.new
 window.show

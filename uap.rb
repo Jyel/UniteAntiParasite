@@ -89,8 +89,9 @@ class UI
 		@font = Gosu::Font.new(20, name: "media/font/Perfect DOS VGA 437 Win.ttf")
 	end
 	
-	def draw(score:)
-		@font.draw("Score: #{score}", 10, 10, 1, 1.0, 1.0, 0xff_ffffff)
+	def draw(score, niveau)
+		@font.draw("Score : #{score}", 10, 10, 1, 1.0, 1.0, 0xff_ffffff)
+		@font.draw("Niveau : #{niveau}", 10, 25, 1, 1.0, 1.0, 0xff_ffffff)
 	end
 end
 
@@ -134,6 +135,7 @@ class GameWindow < Gosu::Window
 		@songplay = 0 #Détermine quand la musique joue
 		@vitesse = 8 #Détermine la vitesse horizontale du joueur
 		@vitessedecor = 3
+		@niveau = 0
 		@e = Enemy.new
 		@tir = 0 #Détermine quand le joueur tire
 			#Initialisation de la musique
@@ -221,7 +223,8 @@ class GameWindow < Gosu::Window
 		
 		@menu.update #Update le menu
 		
-		@vitessedecor = 3 * (@score / 1000 + 1)
+		@niveau += 1 if @score >= (@niveau + 1) * 1000
+		@vitessedecor = 3 + @niveau
 		
 			#Toggle sert à démarrer le jeu seulement quand la barre play est cliqué
 		if @toggleon ==  1 #Dans cette boucle, mettre toutes les fonctions prévues
@@ -310,7 +313,7 @@ class GameWindow < Gosu::Window
 		end
 			#Affichage du UI
 		@son_img.draw(420 - @son_img.width - 10, 10, 1)
-		@ui.draw(score: @score)
+		@ui.draw(@score, @niveau)
 			#Affichage des crédits
 		if @show_credits == 1
 			@bigfont.draw_rel("<u>Crédits</u>",
