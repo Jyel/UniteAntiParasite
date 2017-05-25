@@ -84,32 +84,6 @@ class MenuItem #gère les choix du menu
     end
 end
 
-class Enemy
-  attr_reader :y, :y
-  
-	def initialize()
-		@enemy = Gosu::Image.new("media/ui/virus.png", retro: true)
-		@x = rand * (420 - @enemy.width)
-		@y = -500
-	end
-	
-	def update
-		@y += 3
-	end
-	
-	def x_center_of_mass
-		@x + @enemy.width / 2
-	end
-	
-	def y_center_of_mass
-		@y
-	end
-	
-	def draw
-		@enemy.draw(@x, @y, -1)
-	end
-end
-
 class UI
 	def initialize
 		@font = Gosu::Font.new(20, name: "media/font/Perfect DOS VGA 437 Win.ttf")
@@ -121,8 +95,8 @@ class UI
 end
 
 class GameWindow < Gosu::Window
-	
 	DistanceofCollision = 35
+	attr_accessor :vitesse_decor
 	
 	def initialize #Initialise les données et objets
 		super 420,640
@@ -133,8 +107,13 @@ class GameWindow < Gosu::Window
 		@playclicked = 0 #Détermine si le bouton PLAY a été cliqué
 		@songplay = 0 #Détermine quand la musique joue
 		@vitesse = 8 #Détermine la vitesse horizontale du joueur
+		@vitesse_decor = 3
 		@tir = 0 #Détermine quand le joueur tire
 			#Initialisation de la musique
+		@son_img = Gosu::Image.new("media/ui/son_on.png", retro: true)
+		@toggleson = 0
+		@togglesontimer = 0
+		@son = 1
 		@loop = Gosu::Song.new("media/music/song_loop.ogg")
 		@loop.volume = 0.25
 		@loopstart = Gosu::Song.new("media/music/song_start.ogg")
@@ -175,6 +154,30 @@ class GameWindow < Gosu::Window
 
 	def update #60 fois par seconde
 			#Ici je mets en place la musique de fond
+		# UI.update
+		if @son == 1
+			@son_img = Gosu::Image.new("media/ui/son_on.png", retro: true)
+		else
+			@son_img = Gosu::Image.new("media/ui/son_off.png", retro: true)
+		end
+		
+		if button_down?(Gosu::KB_P) and @son == 1 and @toggleson == 0
+			@son = 0
+			@toggleson = 1
+		elsif button_down?(Gosu::KB_P) and @son == 0 and @toggleson == 0
+			@son = 1
+			@toggleson = 1
+		end
+		
+		if @toggleson == 1 and @togglesontimer <= 6
+				@togglesontimer += 1
+		end
+		
+		if @togglesontimer == 6
+			@togglesontimer = 0
+			@toggleson = 0
+		end
+		
 		if @songplay == 0 and @toggleon == 1
 			@loopstart.play
 			@songplay = 1
@@ -184,16 +187,19 @@ class GameWindow < Gosu::Window
 		end
 			#Ici j'ai fait en sorte que si le joueur a mis le jeu sur pause, la musique diminue de volume
 		if @toggleon == 0 and @songplay >= 1
-			@loop.volume = 0.05
-			@loopstart.volume = 0.05
+			@loop.volume = 0.05 * @son
+			@loopstart.volume = 0.05 * @son
 		elsif @playclicked == 1 and @songplay >= 1
-			@loop.volume = 0.25
+			@loop.volume = 0.25 * @son
 		end
 		
 		@menu.update #Update le menu
+		
+		@vitesse_decor = 3 * (window.score / 1000 + 1)
+		
 			#Toggle sert à démarrer le jeu seulement quand la barre play est cliqué
 		if @toggleon ==  1 #Dans cette boucle, mettre toutes les fonctions prévues
-			@y1 += 3
+			@y1 += @vitesse_decor
 			@player_x -= @vitesse if button_down?(Gosu::KB_A) or button_down?(Gosu::KbLeft) and @player_x >= 0
 			@player_x += @vitesse if button_down?(Gosu::KB_D) or button_down?(Gosu::KbRight) and @player_x < 420 - @player.width
 			@laser_x = @player_x + @player.width / 2 - @laser.width / 2 if @tir == 0
@@ -235,7 +241,8 @@ class GameWindow < Gosu::Window
 			@enemies.each(&:update)
 			@enemies.each{ |enemy|
 				if enemy.y > 640 and @score >= @scoremin
-					@score -= 100 * @scoremin
+					@score -= 20 * @scoremin if @score - 20 * @scoremin >= 0
+					@score = 0 if @score - 20 * @scoremin < 0
 				end
 			}
 			@enemies.reject! {|enemy| enemy.y > 640}
@@ -273,6 +280,7 @@ class GameWindow < Gosu::Window
 			@menu.draw if @show_credits == 0
 		end
 			#Affichage du UI
+		@son_img.draw(420 - @son_img.width - 10, 10, 1)
 		@ui.draw(score: @score)
 			#Affichage des crédits
 		if @show_credits == 1
@@ -361,5 +369,33 @@ class GameWindow < Gosu::Window
 	end
 end
 
+class Enemy
+  attr_reader :y, :y, :vitesse_decor
+  
+	def initialize()
+		@enemy = Gosu::Image.new("media/ui/virus.png", retro: true)
+		@x = rand * (420 - @enemy.width)
+		@y = -500
+	end
+	
+	def update
+		@y += window.vitesse_decor
+	end
+	
+	def x_center_of_mass
+		@x + @enemy.width / 2
+	end
+	
+	def y_center_of_mass
+		@y
+	end
+	
+	def draw
+		@enemy.draw(@x, @y, -1)
+	end
+end
+
+
 window = GameWindow.new
+e = Enemy.new
 window.show

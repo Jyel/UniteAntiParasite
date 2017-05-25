@@ -29,6 +29,7 @@ Il y a de fortes chances que je ne le continue pas après que mon année s'est t
 ### Added :
 - Collision entre le laser et les ennemis
 - Système de points
+- Son d'explosion des ennemis
 ### Changed : 
 - Nouvelle icône/logo
 
