@@ -28,7 +28,7 @@ Il y a de fortes chances que je ne le continue pas après que mon année s'est t
 ***
 # Change Log
 ## [v0.4.0](https://github.com/Jyel/UniteAntiParasite/releases/tag/v0.4.0-alpha)
-[Download 0.3.0-alpha Release &raquo;](https://github.com/Jyel/UniteAntiParasite/releases/download/v0.4.0-alpha/UAP.v0.4.0-alpha.RELEASE.zip)
+[Download 0.4.0-alpha Release &raquo;](https://github.com/Jyel/UniteAntiParasite/releases/download/v0.4.0-alpha/UAP.v0.4.0-alpha.RELEASE.zip)
 ### Added :
 - Collision entre le laser et les ennemis
 - Système de points
