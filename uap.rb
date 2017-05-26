@@ -89,9 +89,22 @@ class UI
 		@font = Gosu::Font.new(20, name: "media/font/Perfect DOS VGA 437 Win.ttf")
 	end
 	
-	def draw(score, niveau)
+	def draw(score, niveau, hp)
 		@font.draw("Score : #{score}", 10, 10, 1, 1.0, 1.0, 0xff_ffffff)
 		@font.draw("Niveau : #{niveau}", 10, 25, 1, 1.0, 1.0, 0xff_ffffff)
+		hp.draw(350 - hp.width / 2, 610 - hp.height / 2, 2)
+	end
+end
+
+class GameOver
+	def initialize
+		@bigfont = Gosu::Font.new(70, name: "media/font/Perfect DOS VGA 437 Win.ttf")
+		@font = Gosu::Font.new(30, name: "media/font/Perfect DOS VGA 437 Win.ttf")
+	end
+	
+	def draw(score)
+		@bigfont.draw("GAME OVER", 35, 50, 3, 1.0, 1.0, 0xff_ffffff)
+		@font.draw("Votre score : #{score}", 55, 125, 3, 1.0, 1.0, 0xff_ffffff)
 	end
 end
 
@@ -124,18 +137,20 @@ end
 
 class GameWindow < Gosu::Window
 	DistanceofCollision = 35
+	DistanceofCollisionPlayer = 50
 	
 	def initialize #Initialise les données et objets
 		super 420,640
 			#Initialisation des données
 		self.caption = "UAP : Unité Anti-Parasite" #Titre de la fenêtre
 		@toggleon = 0 #Démarre le jeu
+		@gameover = 0
 		@show_credits = 0 #Affiche les crédits
 		@playclicked = 0 #Détermine si le bouton PLAY a été cliqué
 		@songplay = 0 #Détermine quand la musique joue
 		@vitesse = 8 #Détermine la vitesse horizontale du joueur
 		@vitessedecor = 3
-		@niveau = 0
+		@niveau = 1
 		@e = Enemy.new
 		@tir = 0 #Détermine quand le joueur tire
 			#Initialisation de la musique
@@ -153,6 +168,7 @@ class GameWindow < Gosu::Window
 		@shoot2 = Gosu::Sample.new("media/sound/shoot2.wav")
 		@shoot3 = Gosu::Sample.new("media/sound/shoot3.wav")
 		@explosion = Gosu::Sample.new("media/sound/explosion.wav")
+		@hit = Gosu::Sample.new("media/sound/hit.wav")
 			#Initialisation du background et de ses coordonnées
 		@background  = Gosu::Image.new("media/back/background.png", retro: true)
 		@x1, @y1 = 0, 0
@@ -167,11 +183,29 @@ class GameWindow < Gosu::Window
 		@title = Gosu::Image.new("media/back/title.png", retro: true)
 		@cache = Gosu::Image.new("media/back/black.png", retro: true)
 		@menu = Menu.new(self)
-		@menu.add_item(Gosu::Image.new("media/button/play.png", retro: true), 210 - 150/2, 320 - 75/2, 2, lambda { if @show_credits == 0 ; @toggleon = 1 ; @playclicked = 1 ; end}, Gosu::Image.new("media/button/play_hover.png", retro: true))
-		@menu.add_item(Gosu::Image.new("media/button/credits.png", retro: true), 210 - 150/2, 420 - 75/2, 2, lambda { @show_credits = 1 if @toggleon == 0}, Gosu::Image.new("media/button/credits_hover.png", retro: true))
-		@menu.add_item(Gosu::Image.new("media/button/exit.png", retro: true), 210 - 150/2, 520 - 75/2, 2, lambda { close if @toggleon == 0 && @show_credits == 0 }, Gosu::Image.new("media/button/exit_hover.png", retro: true))
+		@menu.add_item(Gosu::Image.new("media/button/play.png", retro: true), 210 - 150/2, 320 - 75/2, 2, lambda { 
+			if @show_credits == 0 or (@gameover == 1 and @show_credits == 0)
+				@show_credits = 0
+				@gameover = 0
+				@toggleon = 1
+				@playclicked = 1
+				@hp = Gosu::Image.new("media/ui/coeur1.png", retro: true)
+				@score = 0 if @vie == 0
+				@niveau = 1 if @vie == 0
+				@vie = 3 if @vie == 0
+			end
+		}, Gosu::Image.new("media/button/play_hover.png", retro: true))
+		@menu.add_item(Gosu::Image.new("media/button/credits.png", retro: true), 210 - 150/2, 420 - 75/2, 2, lambda {
+			@show_credits = 1 if @toggleon == 0 or @gameover == 1
+		}, Gosu::Image.new("media/button/credits_hover.png", retro: true))
+		@menu.add_item(Gosu::Image.new("media/button/exit.png", retro: true), 210 - 150/2, 520 - 75/2, 2, lambda {
+			close if (@toggleon == 0 or @gameover == 1) and @show_credits == 0
+		}, Gosu::Image.new("media/button/exit_hover.png", retro: true))
 			#Initialisation du UI
 		@ui = UI.new
+		@g_o = GameOver.new
+		@hp = Gosu::Image.new("media/ui/coeur4.png", retro: true)
+		@vie = 3
 		@score = 0
 		@scoremin = 1
 		@scoreplus = 10 + @scoremin
@@ -223,11 +257,11 @@ class GameWindow < Gosu::Window
 		
 		@menu.update #Update le menu
 		
-		@niveau += 1 if @score >= (@niveau + 1) * 1000
-		@vitessedecor = 3 + @niveau
+		@niveau += 1 if @score >= @niveau * 1000
+		@vitessedecor = 2 + @niveau
 		
 			#Toggle sert à démarrer le jeu seulement quand la barre play est cliqué
-		if @toggleon ==  1 #Dans cette boucle, mettre toutes les fonctions prévues
+		if @toggleon ==  1 and @gameover == 0 #Dans cette boucle, mettre toutes les fonctions prévues
 			@y1 += @vitessedecor
 			@player_x -= @vitesse if button_down?(Gosu::KB_A) or button_down?(Gosu::KbLeft) and @player_x >= 0
 			@player_x += @vitesse if button_down?(Gosu::KB_D) or button_down?(Gosu::KbRight) and @player_x < 420 - @player.width
@@ -239,6 +273,8 @@ class GameWindow < Gosu::Window
 			@tir = 0 if @laser_y <= 0 - @laser.height
 			@shootplay = 0 if @laser_y <= 0 - @laser.height
 			@toggleshoot = 0 if @tir == 0
+			
+			@vie = 0 if button_down?(Gosu::KB_K)
 			
 			if @tir == 1 and @shootplay == 0
 				if rand < 0.33
@@ -255,10 +291,22 @@ class GameWindow < Gosu::Window
 				@enemies.reject! {|enemy| collide?(enemy) ? collision : false}
 			end
 			
+			@enemies.reject! {|enemy| collide_player?(enemy) ? collision_player : false}
+			
 			if @tir == 1 and @toggleshoot == 0 and @score >= @scoremin
 				@toggleshoot = 1
 				@score -= @scoremin
 			end
+			
+			if @vie == 0
+				@gameover = 1
+				@player_x, @player_y = 210 - (@player.width / 2), 620 - @player.height
+				@enemies = []
+				@hp = Gosu::Image.new("media/ui/coeur4.png", retro: true)
+			end
+			
+			@hp = Gosu::Image.new("media/ui/coeur2.png", retro: true) if @vie == 2
+			@hp = Gosu::Image.new("media/ui/coeur3.png", retro: true) if @vie == 1
 			
 			#Gère l'apparition des ennemis.
 			unless @enemies.size >= 15
@@ -288,12 +336,25 @@ class GameWindow < Gosu::Window
 		distance < DistanceofCollision
 	end
 	
+	def collide_player?(enemy)
+		distance = Gosu::distance(x_center_of_mass_player, y_center_of_mass_player, enemy.x_center_of_mass, enemy.y_center_of_mass)
+		distance < DistanceofCollisionPlayer
+	end
+	
 	def x_center_of_mass
 		@laser_x + @laser.width / 2
 	end
 	
+	def x_center_of_mass_player
+		@player_x + @player.width / 2
+	end
+	
 	def y_center_of_mass
 		@laser_y + @laser.height / 4
+	end
+	
+	def y_center_of_mass_player
+		@player_y + @player.height / 4
 	end
 	
 	def collision
@@ -304,16 +365,23 @@ class GameWindow < Gosu::Window
 		true
 	end
 	
+	def collision_player
+		@vie -= 1 if @vie > 0
+		@hit.play(1.0 * @son)
+	end
+	
 	def draw #Affiche (dessine) les objets
 			#Affichage du menu
-		if @toggleon == 0
-			@title.draw(420/2 - (@title.width / 2), 125 - (@title.height / 2), 3)  if @show_credits == 0
+		if @toggleon == 0 or @gameover == 1
 			@cache.draw(0, 0, 2)
 			@menu.draw if @show_credits == 0
 		end
+		@title.draw(420/2 - (@title.width / 2), 125 - (@title.height / 2), 3)  if @show_credits == 0 and @gameover == 0 and @toggleon == 0
+		
 			#Affichage du UI
 		@son_img.draw(420 - @son_img.width - 10, 10, 1)
-		@ui.draw(@score, @niveau)
+		@ui.draw(@score, @niveau, @hp)
+		@g_o.draw(@score) if @gameover == 1 and @show_credits == 0
 			#Affichage des crédits
 		if @show_credits == 1
 			@bigfont.draw_rel("<u>Crédits</u>",
