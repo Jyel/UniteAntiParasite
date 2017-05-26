@@ -18,6 +18,7 @@ Il y a de fortes chances que je ne le continue pas après que mon année s'est t
 
 ## Table of contents
 - <strong>[Change Log](#change-log)</strong>
+  + [v0.5.0](#v050---2017-05-27)
   + [v0.4.0](#v040---2017-05-25)
   + [v0.3.0](#v030---2017-05-22)
   + [v0.2.0](#v020---2017-03-17)
@@ -27,13 +28,19 @@ Il y a de fortes chances que je ne le continue pas après que mon année s'est t
 
 ***
 # Change Log
-## [[Unreleased]](#unreleased)
+## [v0.5.0 : The Actual Game Version](https://github.com/Jyel/UniteAntiParasite/releases/tag/v0.4.0-alpha) - 2017-05-27
+[Download 0.5.0-alpha Release &raquo;](https://github.com/Jyel/UniteAntiParasite/releases/download/v0.5.0-alpha/UAP.v0.5.0-alpha.RELEASE.zip)
 ### Added :
-- Cœurs de vie
+- Collision entre le joueur et les ennemis
 - Système de vie
+- Son de perte de vie
 - "Game over" mis en place
 - Système de points maintenant utile
+- Système de Highscore
+- Stockage fichier des highscores
 ### Changed :
+- Nouvel affichage des points et du niveau
+- Modulation du système de points
 
 <br>
 
@@ -46,8 +53,6 @@ Il y a de fortes chances que je ne le continue pas après que mon année s'est t
 - Possibilité de couper le son (Touche P)
 - Niveau suivant le score
 - Vitesse des ennemis qui augmente suivant le niveau
-- Système de Highscore
-- Stockage fichier des highscores
 ### Changed : 
 - Nouvelle icône/logo
 
