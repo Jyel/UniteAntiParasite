@@ -46,6 +46,8 @@ Il y a de fortes chances que je ne le continue pas après que mon année s'est t
 - Possibilité de couper le son (Touche P)
 - Niveau suivant le score
 - Vitesse des ennemis qui augmente suivant le niveau
+- Système de Highscore
+- Stockage fichier des highscores
 ### Changed : 
 - Nouvelle icône/logo
 
