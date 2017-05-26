@@ -18,7 +18,7 @@ Il y a de fortes chances que je ne le continue pas après que mon année s'est t
 
 ## Table of contents
 - <strong>[Change Log](#change-log)</strong>
-  + [v0.5.0](#v050---2017-05-27)
+  + [v0.5.0](#v050--the-actual-game-version---2017-05-27)
   + [v0.4.0](#v040---2017-05-25)
   + [v0.3.0](#v030---2017-05-22)
   + [v0.2.0](#v020---2017-03-17)
