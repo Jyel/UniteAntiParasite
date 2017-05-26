@@ -27,6 +27,16 @@ Il y a de fortes chances que je ne le continue pas après que mon année s'est t
 
 ***
 # Change Log
+## [[Unreleased]](#unreleased)
+### Added :
+- Cœurs de vie
+- Système de vie
+- "Game over" mis en place
+- Système de points maintenant utile
+### Changed :
+
+<br>
+
 ## [v0.4.0](https://github.com/Jyel/UniteAntiParasite/releases/tag/v0.4.0-alpha) - 2017-05-25
 [Download 0.4.0-alpha Release &raquo;](https://github.com/Jyel/UniteAntiParasite/releases/download/v0.4.0-alpha/UAP.v0.4.0-alpha.RELEASE.zip)
 ### Added :
