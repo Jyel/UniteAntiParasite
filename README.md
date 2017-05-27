@@ -6,7 +6,7 @@
   <h1 align="center">UAP : Unité Anti-Parasite</h1>
 
   <p align="center">
-    <a href="https://github.com/Jyel/UniteAntiParasite/releases/download/v0.4.0-alpha/UAP.v0.4.0-alpha.RELEASE.zip"><strong>Download v0.4.0-alpha Release &raquo;</strong></a>
+    <a href="https://github.com/Jyel/UniteAntiParasite/releases/download/v0.5.0-alpha/UAP.v0.5.0-alpha.RELEASE.zip"><strong>Download v0.5.0-alpha Release &raquo;</strong></a>
   </p>
 </p>
 
