@@ -9,7 +9,7 @@
 | Go right    | D         | Right arrow   |
 | Pause       | Space bar |               |
 | Shoot laser | W         | Up arrow      |
-| Mute       | P		 |               |
+| Mute        | P		  |               |
 
 ### AZERTY Keyboards
 | Action      | Key       | Secondary Key |
@@ -18,4 +18,4 @@
 | Go right    | D         | Right arrow   |
 | Pause       | Space bar |               |
 | Shoot laser | Z         | Up arrow      |
-| Mute       | P		 |               |
+| Mute        | P		  |               |
